@@ -8,22 +8,48 @@ require('../../scss/style.scss');
 import {
   withGoogleMap,
   GoogleMap,
+  Marker,
 } from "react-google-maps";
 
 const SimpleMapExampleGoogleMap = withGoogleMap(props => (
   <GoogleMap
     defaultZoom={10}
     defaultCenter={{ lat: 43.7615, lng: -79.383 }}
-  />
+  >
+ {props.markers.map(marker => (
+      <Marker
+        {...marker}
+        
+      />
+    ))}
+  </GoogleMap>
 ));
 
 export default class App extends Component {
+constructor(props) {
+	super(props);
+
+  this.state = {
+    markers: [{
+      position: {
+        lat: 43.7615,
+        lng: -79.383,
+      },
+      key: `Toronto`,
+      defaultAnimation: 2,
+    }],
+  };
+}
+
+	componentDidMount() {
+		console.log(window.innerHeight);
+	}
+
 	render() {
     return (
-    	<div className="container">
-	    <div className="ui two column">
 
-	      <div className="ui sidebar visible vertical menu" style={{position: 'relative', width: '20%', height: '100%', float: 'left'}}>
+	    <div className="ui two column">
+	      <div className="ui sidebar visible vertical menu" style={{width: '20%', height: '100%', float: 'left'}}>
 		    <a className="item">
 		      Restaurants
 		    </a>
@@ -35,19 +61,19 @@ export default class App extends Component {
 		    </a>
 		  </div>
 
-		  <div style={{backgroundColor: 'black', width: '80%', height: '100%', float: 'left'}}> 
+		  
 			<SimpleMapExampleGoogleMap
 	        containerElement={
-	          <div style={{ height: '100%', width: '100%' }} />
+	          <div style={{backgroundColor: 'black', width: '80%', height: window.innerHeight, float: 'right'}} /> 
 	        }
 	        mapElement={
-	          <div style={{ height: '700px', width: '100%'}} />
+	          <div style={{ height: '100%', width: '100%'}} />
 	        }
-	      />
-	      </div>
+	        markers={this.state.markers}
+	      	/>
 
-	      </div>
-	      </div>
+	    </div>
+
 		);
 	}
 }
