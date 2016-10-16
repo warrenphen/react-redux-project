@@ -30,30 +30,30 @@ const Maps = withGoogleMap(props => (
   </GoogleMap>
 ));
 
-export default class Menu extends Component {
+export default class GoogleMaps extends Component {
 	
 	constructor(props) {
 	super(props);
 
-  this.state = {
-    markers: [{
-      position: {
-        lat: 43.7615,
-        lng: -79.383,
-      },
-      key: `Toronto`,
-      defaultAnimation: 2,
-    },
-    {
-      position: {
-        lat: 43.7515,
-        lng: -79.373,
-      },
-      key: `asdf`,
-      defaultAnimation: 2,
-    }],
-  };
-}
+	  this.state = {
+	    markers: [{
+	      position: {
+	        lat: 43.7615,
+	        lng: -79.383,
+	      },
+	      key: `Toronto`,
+	      defaultAnimation: 2,
+	    },
+	    {
+	      position: {
+	        lat: 43.7515,
+	        lng: -79.373,
+	      },
+	      key: `asdf`,
+	      defaultAnimation: 2,
+	    }],
+	  };
+	}
 
 	render() {
     return (
