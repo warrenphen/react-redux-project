@@ -14,26 +14,11 @@ import {
   PlacesService
 } from "react-google-maps";
 
-const TORONTO = {lat: 43.7615, lng: -79.383};
-
-const INPUT_STYLE = {
-  boxSizing: `border-box`,
-  MozBoxSizing: `border-box`,
-  border: `1px solid transparent`,
-  width: `240px`,
-  height: `32px`,
-  marginTop: `27px`,
-  padding: `0 12px`,
-  borderRadius: `1px`,
-  boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-  fontSize: `14px`,
-  outline: `none`,
-  textOverflow: `ellipses`,
-};
+const TORONTO = new google.maps.LatLng(43.7515, -79.373);
 
 const Maps = withGoogleMap(props => (
   <GoogleMap
-    defaultZoom={10}
+    defaultZoom={12}
     defaultCenter={TORONTO}
   >
  {props.markers.map(marker => (
@@ -51,28 +36,11 @@ export default class GoogleMaps extends Component {
 		super(props);
 
 	  this.state = {
-	    markers: [{
-	      position: {
-	        lat: 43.7615,
-	        lng: -79.383,
-	      },
-	      key: `Toronto`,
-	      defaultAnimation: 2,
-	    },
-	    {
-	      position: {
-	        lat: 43.7515,
-	        lng: -79.373,
-	      },
-	      key: `asdf`,
-	      defaultAnimation: 2,
-	    }],
+	    markers: undefined
 	  };
 	}
 
 	componentDidMount() {
-
-		const toronto = new google.maps.LatLng(43.7515, -79.373);
 
 		const map = new google.maps.Map({
       center: TORONTO,
@@ -80,7 +48,7 @@ export default class GoogleMaps extends Component {
     });
 
  		const request = {
-	    location: toronto,
+	    location: TORONTO,
 	    radius: '2000',
     	type: ['gym']
   	};
@@ -99,6 +67,7 @@ export default class GoogleMaps extends Component {
     for (let result of results) {
     	console.log(result);
     	const marker = {
+    		defaultAnimation: 2,
 				position: result.geometry.location
 			}
       markers.push(marker);
