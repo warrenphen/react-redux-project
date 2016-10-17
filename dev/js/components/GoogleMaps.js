@@ -41,7 +41,6 @@ export default class GoogleMaps extends Component {
 	}
 
 	componentDidMount() {
-
 		const map = new google.maps.Map({
       center: TORONTO,
       zoom: 15
@@ -65,7 +64,6 @@ export default class GoogleMaps extends Component {
       return;
     }
     for (let result of results) {
-    	console.log(result);
     	const marker = {
     		defaultAnimation: 2,
 				position: result.geometry.location
