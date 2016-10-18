@@ -2,7 +2,7 @@ export default function togglePlaces(placeType) {
 console.log(`toggled ${placeType}`);
   return {
     type: 'TOGGLE_PLACES',
-    placeType: placeType
+    payload: placeType
   }
 };
 
