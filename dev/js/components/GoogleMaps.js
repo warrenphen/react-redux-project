@@ -4,11 +4,7 @@ import {
 } from "react";
 
 require('../../scss/style.scss');
-import { createStore } from 'redux';
-import ToggleReducer from '../reducers/toggle-reducer';
-import togglePlaces from '../actions/togglePlaces';
-
-let store = createStore(ToggleReducer);
+import { connect } from 'react-redux';
 
 import {
   withGoogleMap,
@@ -35,32 +31,24 @@ const Maps = withGoogleMap(props => (
   </GoogleMap>
 ));
 
-export default class GoogleMaps extends Component {
+class GoogleMaps extends Component {
 	
 	constructor(props) {
 		super(props);
 
-	  this.state = {
-	    markers: undefined
-	  };
+	  	this.state = {
+	    	markers: undefined
+	  	};
 	}
 
 	componentDidMount() {
-		store.dispatch(togglePlaces('restaurant'));
-		console.log(store.getState(), 'state');
 		const map = new google.maps.Map({
-      center: TORONTO,
-      zoom: 15
-    });
-
- 		const request = {
-	    location: TORONTO,
-	    radius: '2000',
-    	type: ['school']
-  	};
+	      center: TORONTO,
+	      zoom: 15
+	    });
  
 		const service = new google.maps.places.PlacesService(map);
-		service.nearbySearch(request, this.callback.bind(this));
+		service.nearbySearch(this.props.request, this.callback.bind(this));
 	}
 
 	callback(results, status) {
@@ -97,4 +85,12 @@ export default class GoogleMaps extends Component {
 	}
 }
 
+function mapStateToProps(state){
+	console.log(state);
+	return {
+		request: state
+	};
+}
+
+export default connect(mapStateToProps)(GoogleMaps);
 

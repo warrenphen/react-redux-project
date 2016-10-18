@@ -5,23 +5,26 @@ import {
 
 require('../../scss/style.scss');
 import togglePlaces from '../actions/togglePlaces';
-import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-export default class MenuItem extends Component {
+class MenuItem extends Component {
 	
 	constructor(props) {
 		super(props);
 	}
 
-	_onClick() {
-		dispatch(togglePlaces(this.props.children));
-	}
-
 	render() {
     return (
-	    <a onClick={() => this._onClick()} className="item">
+	    <a onClick={() => this.props.togglePlaces(this.props.children)} className="item">
 	      {this.props.children}
 	    </a>
 		);
 	}
 }
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({togglePlaces: togglePlaces}, dispatch);
+}
+
+export default connect(mapDispatchToProps, mapDispatchToProps)(MenuItem);

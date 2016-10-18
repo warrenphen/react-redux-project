@@ -1,5 +1,9 @@
+const TORONTO = {lat: 43.7515, lng: -79.373};
+
 const initialState = {
-  placeType: 'gym'
+  location: TORONTO,
+	radius: '2000',
+  type: ['school']
 }
 
 export default function toggleReducer(state = initialState, action) {
