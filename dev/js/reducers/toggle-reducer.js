@@ -10,7 +10,7 @@ export default function toggleReducer(state = initialState, action) {
   switch (action.type) {
     case 'TOGGLE_PLACES':
       return Object.assign({}, state, {
-        type: action.payload
+        type: [action.payload]
       });  
     default:
       return state

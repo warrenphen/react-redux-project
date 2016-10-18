@@ -10,9 +10,6 @@ import {
   withGoogleMap,
   GoogleMap,
   Marker,
-  SearchBox,
-  searchNearby,
-  PlacesService
 } from "react-google-maps";
 
 const TORONTO = new google.maps.LatLng(43.7515, -79.373);
@@ -24,10 +21,10 @@ const Maps = withGoogleMap(props => (
   >
  {props.markers.map(marker => (
       <Marker
+
         {...marker}
       />
     ))}
-
   </GoogleMap>
 ));
 
