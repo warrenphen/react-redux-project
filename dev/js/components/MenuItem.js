@@ -4,6 +4,8 @@ import {
 } from "react";
 
 require('../../scss/style.scss');
+import togglePlaces from '../actions/togglePlaces';
+import { connect } from 'react-redux';
 
 export default class MenuItem extends Component {
 	
@@ -11,9 +13,13 @@ export default class MenuItem extends Component {
 		super(props);
 	}
 
+	_onClick() {
+		dispatch(togglePlaces(this.props.children));
+	}
+
 	render() {
     return (
-	    <a className="item">
+	    <a onClick={() => this._onClick()} className="item">
 	      {this.props.children}
 	    </a>
 		);

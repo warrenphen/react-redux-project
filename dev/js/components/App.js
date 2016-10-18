@@ -7,7 +7,19 @@ require('../../scss/style.scss');
 import Menu from './Menu';
 import GoogleMaps from './GoogleMaps';
 
-const MENU_ITEMS = ['restaurants', 'gyms', 'coffee shops', 'gas stations']
+const MENU_ITEMS = [{
+		id: '1',
+		name: 'restaurant'
+	}, 
+	{
+		id: '2',
+		name: 'gym'
+	}, 
+	{
+		id: '3',
+		name: 'school'
+	}, 
+]
 
 export default class App extends Component {
 

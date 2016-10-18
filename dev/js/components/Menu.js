@@ -9,7 +9,7 @@ import MenuItem from './MenuItem';
 export default class Menu extends Component {
 	render() {
 		const menuItems = this.props.menuItems.map(menuItem => {
-			return <MenuItem>{menuItem}</MenuItem>
+			return <MenuItem key={menuItem.key}>{menuItem.name}</MenuItem>
 		});
 
     return (

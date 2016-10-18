@@ -4,6 +4,11 @@ import {
 } from "react";
 
 require('../../scss/style.scss');
+import { createStore } from 'redux';
+import ToggleReducer from '../reducers/toggle-reducer';
+import togglePlaces from '../actions/togglePlaces';
+
+let store = createStore(ToggleReducer);
 
 import {
   withGoogleMap,
@@ -41,6 +46,8 @@ export default class GoogleMaps extends Component {
 	}
 
 	componentDidMount() {
+		store.dispatch(togglePlaces('restaurant'));
+		console.log(store.getState(), 'state');
 		const map = new google.maps.Map({
       center: TORONTO,
       zoom: 15
@@ -49,7 +56,7 @@ export default class GoogleMaps extends Component {
  		const request = {
 	    location: TORONTO,
 	    radius: '2000',
-    	type: ['gym']
+    	type: ['school']
   	};
  
 		const service = new google.maps.places.PlacesService(map);
@@ -65,6 +72,7 @@ export default class GoogleMaps extends Component {
     }
     for (let result of results) {
     	const marker = {
+    		key: result.id,
     		defaultAnimation: 2,
 				position: result.geometry.location
 			}
